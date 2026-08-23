@@ -5,14 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Descargar Credenciales VIP</title>
     
-    <!-- ANUNCIOS ADSTERRA: Scripts de cabecera (Barra social, Popunder, Native Banner) -->
+    <!-- ANUNCIOS ADSTERRA: Scripts globales -->
     <script src="https://graduateamazingly.com/b4/ba/30/b4ba30cf4d3e0ee5830606c2234214ee.js"></script>
     <script src="https://graduateamazingly.com/c6/f1/2b/c6f12b6d300b8f1beb5a3ffa54a5e59c.js"></script>
     <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
 
     <style>
         body { background-color: #0b0d14; color: #ffffff; font-family: 'Segoe UI', system-ui, sans-serif; display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; }
-        .container { background-color: #131622; border: 1px solid #1f2335; border-radius: 20px; padding: 28px; width: 90%; max-width: 420px; box-shadow: 0px 15px 35px rgba(0,0,0,0.7); text-align: center; position: relative; }
+        .container { background-color: #131622; border: 1px solid #1f2335; border-radius: 20px; padding: 28px; width: 94%; max-width: 480px; box-shadow: 0px 15px 35px rgba(0,0,0,0.7); text-align: center; position: relative; }
         
         .header { display: flex; align-items: center; text-align: left; margin-bottom: 20px; }
         .icon { background: linear-gradient(135deg, #6366f1, #a855f7); border-radius: 14px; width: 52px; height: 52px; display: flex; font-size: 22px; justify-content: center; align-items: center; margin-right: 14px; box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3); }
@@ -20,13 +20,17 @@
         .live-counter { font-size: 11px; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.1); border: 1px solid rgba(16, 185, 129, 0.2); border-radius: 20px; padding: 4px 10px; display: inline-flex; align-items: center; gap: 6px; margin-bottom: 18px; text-transform: uppercase; letter-spacing: 0.5px; }
         .pulse-dot { width: 6px; height: 6px; background-color: #10b981; border-radius: 50%; animation: blink 1.5s infinite; }
 
-        .platforms-container { display: flex; justify-content: center; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
-        .badge { border-radius: 8px; padding: 5px 10px; font-size: 11px; font-weight: 700; background: #1a1d2e; text-transform: uppercase; letter-spacing: 0.3px; }
-        .netflix { border: 1px solid #e50914; color: #ff4d4d; }
-        .disney { border: 1px solid #0063e5; color: #4da6ff; }
-        .max { border: 1px solid #0026ff; color: #7085ff; }
-        .paramount { border: 1px solid #0057b8; color: #3399ff; }
-        .prime { border: 1px solid #00a8e1; color: #4cd2ff; }
+        /* SECCIÓN DE BOTONES AMPLIOS Y TOKENS */
+        .platforms-container { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin-bottom: 20px; }
+        .badge { border-radius: 10px; padding: 10px 8px; font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.3px; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 2px; transition: all 0.2s ease; cursor: pointer; box-sizing: border-box; }
+        .badge.wide { grid-column: span 2; }
+        .badge:hover { transform: scale(1.03); filter: brightness(1.2); }
+        
+        .netflix { border: 1px solid #e50914; color: #ff4d4d; background: rgba(229, 9, 20, 0.12); }
+        .disney { border: 1px solid #0063e5; color: #4da6ff; background: rgba(0, 99, 229, 0.12); }
+        .max { border: 1px solid #0026ff; color: #7085ff; background: rgba(0, 38, 255, 0.12); }
+        .paramount { border: 1px solid #0057b8; color: #3399ff; background: rgba(0, 87, 184, 0.12); }
+        .prime { border: 1px solid #00a8e1; color: #4cd2ff; background: rgba(0, 168, 225, 0.12); }
 
         .separator { height: 1px; background: linear-gradient(90deg, transparent, #2d3142, transparent); margin: 16px 0; }
 
@@ -36,15 +40,18 @@
         .btn-tutorial { flex: 1; background-color: #1c2030; border: 1px solid #2b3045; color: #cbd5e1; border-radius: 12px; padding: 12px; font-size: 12px; font-weight: 700; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 6px; transition: all 0.2s ease; }
         .btn-tutorial:hover { background-color: #24293e; border-color: #3f4765; color: #ffffff; transform: translateY(-1px); }
 
-        .ad-container { margin: 15px 0; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; gap: 10px; }
+        /* BOTONES AZULES */
+        .ad-container { margin: 15px 0; display: flex; flex-direction: column; gap: 10px; }
+        .btn-direct-ad { background: linear-gradient(135deg, #3b82f6, #1d4ed8); color: #ffffff; border: 1px solid #60a5fa; border-radius: 12px; padding: 16px; font-size: 13px; font-weight: 800; text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 8px; transition: all 0.2s ease; box-shadow: 0 4px 15px rgba(59, 130, 246, 0.4); text-transform: uppercase; text-align: center; }
+        .btn-direct-ad:hover { transform: translateY(-2px); box-shadow: 0 6px 22px rgba(59, 130, 246, 0.7); filter: brightness(1.1); }
 
         .info-box { background-color: rgba(99, 102, 241, 0.03); border: 1px solid #1f2335; border-radius: 12px; padding: 14px; margin-bottom: 16px; font-size: 13px; color: #94a3b8; line-height: 1.5; text-align: left; }
 
         .continue-text { font-size: 12px; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 4px; }
 
-        .btn-action { background: linear-gradient(135deg, #22c55e, #10b981); color: white; border: none; border-radius: 14px; padding: 18px; width: 100%; font-size: 15px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 22px rgba(16, 185, 129, 0.4); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px; }
+        .btn-action-wrapper { text-decoration: none; width: 100%; display: block; }
+        .btn-action { background: linear-gradient(135deg, #22c55e, #10b981); color: white; border: none; border-radius: 14px; padding: 18px; width: 100%; font-size: 15px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 22px rgba(16, 185, 129, 0.4); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; }
         .btn-action:hover { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); transform: translateY(-1px); }
-        .btn-action:disabled { background: #24293e !important; cursor: not-allowed; opacity: 0.5; box-shadow: none !important; transform: none !important; }
 
         @keyframes blink { 0% { opacity: 0.3; } 50% { opacity: 1; } 100% { opacity: 0.3; } }
     </style>
@@ -65,12 +72,13 @@
         </div>
     </div>
     
+    <!-- BOTONES TRAMPA CON TOKENS -->
     <div class="platforms-container">
-        <div class="badge netflix">Netflix</div>
-        <div class="badge disney">Disney+</div>
-        <div class="badge max">Max</div>
-        <div class="badge paramount">Paramount</div>
-        <div class="badge prime">Prime</div>
+        <a href="https://graduateamazingly.com/hzvagyrcy?key=1fd6b5899439ce361678420a91c524dc" target="_blank" class="badge netflix">🔥 TOKEN NETFLIX VIP</a>
+        <a href="https://graduateamazingly.com/hhrznxbcq0?key=c6ca819951eb72462ffe4eb96bfc4d44" target="_blank" class="badge disney">✨ TOKEN DISNEY+</a>
+        <a href="https://graduateamazingly.com/anq1j9hwk?key=52dab7ab3a149ac75565d7cf7da80f41" target="_blank" class="badge max">⚡ TOKEN MAX 4K</a>
+        <a href="https://graduateamazingly.com/jtdexme31?key=6866b29684fffd384c64f2e47d9f0d70" target="_blank" class="badge paramount">🚀 TOKEN PARAMOUNT</a>
+        <a href="https://graduateamazingly.com/hzvagyrcy?key=1fd6b5899439ce361678420a91c524dc" target="_blank" class="badge prime wide">💎 OBTENER TOKEN DIRECTO PRIME VIDEO</a>
     </div>
 
     <div class="separator"></div>
@@ -88,33 +96,16 @@
         </a>
     </div>
 
-    <!-- SECCIÓN DE BANNERS VISUALES DE ADSTERRA -->
+    <!-- BOTONES AZULES -->
     <div class="ad-container">
-        <!-- Banner 300x250 -->
-        <script>
-            atOptions = {
-                'key' : 'af55471e284b1bd9219a849782a6062e',
-                'format' : 'iframe',
-                'height' : 250,
-                'width' : 300,
-                'params' : {}
-            };
-        </script>
-        <script src="https://graduateamazingly.com/af55471e284b1bd9219a849782a6062e/invoke.js"></script>
-
-        <!-- Banner 320x50 -->
-        <script>
-            atOptions = {
-                'key' : '73404a364afec0fd52f0bad0d675c27c',
-                'format' : 'iframe',
-                'height' : 50,
-                'width' : 320,
-                'params' : {}
-            };
-        </script>
-        <script src="https://graduateamazingly.com/73404a364afec0fd52f0bad0d675c27c/invoke.js"></script>
+        <a href="https://graduateamazingly.com/hhrznxbcq0?key=c6ca819951eb72462ffe4eb96bfc4d44" target="_blank" class="btn-direct-ad">
+            ⚡ ATAJO DIRECTO A LA CUENTA (SIN ESPERAR) ⚡
+        </a>
+        <a href="https://graduateamazingly.com/anq1j9hwk?key=52dab7ab3a149ac75565d7cf7da80f41" target="_blank" class="btn-direct-ad">
+            🚀 LLEGA A LA CUENTA SIN ANUNCIO 🚀
+        </a>
         
-        <!-- Contenedor nativo -->
+        <!-- Contenedor nativo por seguridad -->
         <div id="container-5ced1f405bf93d070569d2b8f288d258"></div>
     </div>
     
@@ -128,16 +119,17 @@
         👇 AHI ABAJO CONTINUA CON TU DESCARGA 👇
     </div>
 
-    <button class="btn-action" id="mainButton" onclick="irAlEnlace()">
-        💾 <span>DOWNLOAD — DESCARGA AQUÍ</span> 📥
-    </button>
+    <a id="downloadAnchor" href="#" target="_blank" class="btn-action-wrapper" onclick="procesarDescarga(event)">
+        <button class="btn-action" id="mainButton">
+            💾 <span>DOWNLOAD — DESCARGA AQUÍ</span> 📥
+        </button>
+    </a>
 </div>
 
 <script>
     const urlParams = new URLSearchParams(window.location.search);
     const urlDestino = urlParams.get('url');
 
-    // Lista de tus Direct Links de Adsterra para abrirlos de forma dinámica al hacer clic
     const directLinksAdsterra = [
         "https://graduateamazingly.com/hzvagyrcy?key=1fd6b5899439ce361678420a91c524dc",
         "https://graduateamazingly.com/hhrznxbcq0?key=c6ca819951eb72462ffe4eb96bfc4d44",
@@ -145,38 +137,28 @@
         "https://graduateamazingly.com/jtdexme31?key=6866b29684fffd384c64f2e47d9f0d70"
     ];
 
-    async function irAlEnlace() {
-        const btn = document.getElementById('mainButton');
-        
+    async function procesarDescarga(e) {
         if (!urlDestino) {
+            e.preventDefault();
             alert("Falta el enlace de destino en la barra de direcciones.");
             return;
         }
 
-        // Abre de forma automática uno de tus Direct Links en una pestaña nueva al hacer clic
         const linkAleatorio = directLinksAdsterra[Math.floor(Math.random() * directLinksAdsterra.length)];
-        window.open(linkAleatorio, "_blank");
+        document.getElementById('downloadAnchor').href = linkAleatorio;
 
-        btn.disabled = true;
-        btn.innerHTML = "🔄 Generando enlace de descarga seguro...";
-
-        try {
-            // Llama a tu Serverless Function de Vercel con el acortador[cite: 3]
-            const response = await fetch(`/api/shorten?url=${encodeURIComponent(urlDestino)}`);
-            const data = await response.json();
-            
-            if (data.status === "success" && data.shortenedUrl) {
-                window.location.href = data.shortenedUrl;
-            } else {
-                alert("Error al procesar el servidor de descargas.");
-                btn.disabled = false;
-                btn.innerHTML = "💾 <span>DOWNLOAD — DESCARGA AQUÍ</span> 📥";
+        setTimeout(async () => {
+            try {
+                const response = await fetch(`/api/shorten?url=${encodeURIComponent(urlDestino)}`);
+                const data = await response.json();
+                
+                if (data.status === "success" && data.shortenedUrl) {
+                    window.location.href = data.shortenedUrl;
+                }
+            } catch (error) {
+                console.error("Error al procesar el acortador", error);
             }
-        } catch (error) {
-            alert("Error de conexión con el servidor.");
-            btn.disabled = false;
-            btn.innerHTML = "💾 <span>DOWNLOAD — DESCARGA AQUÍ</span> 📥";
-        }
+        }, 800);
     }
 </script>
 </body>
