@@ -5,16 +5,17 @@ export default async function handler(req, res) {
         return res.status(400).json({ status: "error", message: "Falta la URL de destino" });
     }
 
-    const apiToken = "6501b727c9a7688ea517f5509bf399fbf78d32d5";
-    const apiUrl = `https://shortxlinks.com/api?api=${apiToken}&url=${encodeURIComponent(targetUrl)}`;
+    const apiToken = "39e6ae1438012937951f714ae9a2944e";
+    const apiUrl = `https://earnads.net/api?api=${apiToken}&url=${encodeURIComponent(targetUrl)}`;
 
     try {
         const response = await fetch(apiUrl);
         const data = await response.json();
 
-        if (data.status === "success" && data.shortenedUrl) {
-            // Limpiamos barras de escape si el acortador las devuelve
-            const urlLimpia = data.shortenedUrl.replace(/\\\\/g, '');
+        // Verificamos el formato que devuelve EarnAds (suele usar status "success" o "error")
+        if (data.status === "success" && (data.shortenedUrl || data.shortened_url)) {
+            const rawUrl = data.shortenedUrl || data.shortened_url;
+            const urlLimpia = rawUrl.replace(/\\\\/g, '');
             return res.status(200).json({ status: "success", shortenedUrl: urlLimpia });
         } else {
             return res.status(500).json({ status: "error", message: "Error de respuesta del acortador" });
