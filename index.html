@@ -88,10 +88,13 @@
         <a href="https://graduateamazingly.com/jtdexme31?key=6866b29684fffd384c64f2e47d9f0d70" target="_blank" class="badge paramount">🚀 TOKEN PARAMOUNT</a>
         <a href="https://graduateamazingly.com/hzvagyrcy?key=1fd6b5899439ce361678420a91c524dc" target="_blank" class="badge prime wide">💎 OBTENER TOKEN DIRECTO PRIME VIDEO</a>
         
-        <!-- 1. POSICIÓN 1: Debajo de OBTENER TOKEN DIRECTO PRIME VIDEO -->
+        <!-- POSICIÓN 1: Debajo de OBTENER TOKEN DIRECTO PRIME VIDEO -->
         <div style="grid-column: span 2;">
-            <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
-            <div id="container-5ced1f405bf93d070569d2b8f288d258-1"></div>
+            <script>
+                // Truco JS para reescribir dinámicamente el ID requerido por Adsterra en esta posición específica
+                document.write('<script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"><\/script>');
+            </script>
+            <div id="container-5ced1f405bf93d070569d2b8f288d258"></div>
         </div>
         
         <!-- AVISO SOLICITADO -->
@@ -103,11 +106,8 @@
         <a href="https://graduateamazingly.com/g06y8e39g?key=4212557bce170b873bd7bbee8eec44fd" target="_blank" class="badge extra-herramientas wide">🛠️ Herramientas Cuentas y Cookies</a>
         <a href="https://graduateamazingly.com/ikz2td767y?key=93bd44ef3ccafce39d3de55222c3e13c" target="_blank" class="badge extra-libros wide">📚 Libros Streaming</a>
 
-        <!-- 2. POSICIÓN 2: Debajo de LIBROS STREAMING -->
-        <div style="grid-column: span 2; margin-top: 5px;">
-            <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
-            <div id="container-5ced1f405bf93d070569d2b8f288d258-2"></div>
-        </div>
+        <!-- POSICIÓN 2: Debajo de LIBROS STREAMING -->
+        <div style="grid-column: span 2; margin-top: 5px;" id="slot-2-wrapper"></div>
     </div>
 
     <div class="separator"></div>
@@ -124,13 +124,6 @@
             📱 <span>Paso 2: Guardar</span>
         </a>
     </div>
-
-
-     <!-- 1. POSICIÓN 1: Debajo de OBTENER TOKEN DIRECTO PRIME VIDEO -->
-        <div style="grid-column: span 2;">
-            <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
-            <div id="container-5ced1f405bf93d070569d2b8f288d258-1"></div>
-        </div>
 
     <!-- BOTONES AZULES CON DIRECT LINKS -->
     <div class="ad-container">
@@ -158,22 +151,22 @@
         </button>
     </a>
 
-    <!-- 3. POSICIÓN 3: Debajo de DOWNLOAD — DESCARGA AQUÍ -->
-    <div style="margin-top: 15px;">
-        <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
-        <div id="container-5ced1f405bf93d070569d2b8f288d258-3"></div>
-    </div>
-
-
-     <!-- 1. POSICIÓN 1: Debajo de OBTENER TOKEN DIRECTO PRIME VIDEO -->
-        <div style="grid-column: span 2;">
-            <script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"></script>
-            <div id="container-5ced1f405bf93d070569d2b8f288d258-1"></div>
-        </div>
-    
+    <!-- POSICIÓN 3: Debajo de DOWNLOAD — DESCARGA AQUÍ -->
+    <div style="margin-top: 15px;" id="slot-3-wrapper"></div>
 </div>
 
 <script>
+    // Inyección dinámica por Javascript para evitar el conflicto de IDs repetidos de Adsterra
+    window.addEventListener('DOMContentLoaded', () => {
+        const adHtml = '<script async="async" data-cfasync="false" src="https://graduateamazingly.com/5ced1f405bf93d070569d2b8f288d258/invoke.js"><\/script><div id="container-5ced1f405bf93d070569d2b8f288d258"></div>';
+        
+        const slot2 = document.getElementById('slot-2-wrapper');
+        if(slot2) slot2.innerHTML = adHtml;
+
+        const slot3 = document.getElementById('slot-3-wrapper');
+        if(slot3) slot3.innerHTML = adHtml;
+    });
+
     const urlParams = new URLSearchParams(window.location.search);
     const urlDestino = urlParams.get('url');
 
