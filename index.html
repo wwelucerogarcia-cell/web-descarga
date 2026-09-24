@@ -57,7 +57,7 @@
 
         .continue-text { font-size: 12px; font-weight: 800; color: #a855f7; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; display: flex; align-items: center; justify-content: center; gap: 4px; }
 
-        .btn-action-wrapper { text-decoration: none; width: 100%; display: block; }
+        .btn-action-wrapper { text-decoration: none; width: 100%; display: block; cursor: pointer; }
         .btn-action { background: linear-gradient(135deg, #22c55e, #10b981); color: white; border: none; border-radius: 14px; padding: 18px; width: 100%; font-size: 15px; font-weight: bold; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 0 22px rgba(16, 185, 129, 0.4); text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; justify-content: center; gap: 8px; box-sizing: border-box; }
         .btn-action:hover { box-shadow: 0 0 30px rgba(16, 185, 129, 0.7); transform: translateY(-1px); }
 
@@ -144,11 +144,12 @@
         👇 AHI ABAJO CONTINUA CON TU DESCARGA 👇
     </div>
 
-    <a id="downloadAnchor" href="#" target="_blank" class="btn-action-wrapper" onclick="procesarDescarga(event)">
+    <!-- BOTÓN DE DESCARGA SEGURO SIN ATRIBUTOS CONFLICTIVOS -->
+    <div class="btn-action-wrapper" onclick="procesarDescarga(event)">
         <button class="btn-action" id="mainButton">
-            💾 <span>DOWNLOAD — DESCARGA AQUÍ</span> 📥
+            💾 <span id="btnText">DOWNLOAD — DESCARGA AQUÍ</span> 📥
         </button>
-    </a>
+    </div>
 
     <!-- POSICIÓN 3: Debajo de DOWNLOAD — DESCARGA AQUÍ -->
     <div style="margin-top: 15px;" id="slot-3-wrapper"></div>
@@ -195,28 +196,50 @@
         "https://graduateamazingly.com/g06y8e39g?key=4212557bce170b873bd7bbee8eec44fd"
     ];
 
+    // Bandera para evitar múltiples clics simultáneos que congelen la página
+    let procesando = false;
+
     async function procesarDescarga(e) {
+        e.preventDefault();
+
+        if (procesando) return; // Evita doble ejecución
+
         if (!urlDestino) {
-            e.preventDefault();
             alert("Falta el enlace de destino en la barra de direcciones.");
             return;
         }
 
-        const linkAleatorio = directLinksAdsterra[Math.floor(Math.random() * directLinksAdsterra.length)];
-        document.getElementById('downloadAnchor').href = linkAleatorio;
+        procesando = true;
+        const btnText = document.getElementById('btnText');
+        btnText.innerText = "⏳ GENERANDO ACCESO...";
 
-        setTimeout(async () => {
-            try {
-                const response = await fetch(`/api/shorten?url=${encodeURIComponent(urlDestino)}`);
-                const data = await response.json();
-                
-                if (data.status === "success" && data.shortenedUrl) {
-                    window.location.href = data.shortenedUrl;
-                }
-            } catch (error) {
-                console.error("Error al procesar el acortador", error);
+        // 1. Abre el pop-under de Adsterra de manera independiente en segundo plano
+        try {
+            const linkAleatorio = directLinksAdsterra[Math.floor(Math.random() * directLinksAdsterra.length)];
+            window.open(linkAleatorio, '_blank');
+        } catch (err) {
+            console.error("Error al abrir anuncio", err);
+        }
+
+        // 2. Consulta de manera segura la API del acortador sin bloquear la interfaz
+        try {
+            const response = await fetch(`/api/shorten?url=${encodeURIComponent(urlDestino)}`);
+            const data = await response.json();
+            
+            if (data.status === "success" && data.shortenedUrl) {
+                // Redirección inmediata y limpia al acortador
+                window.location.href = data.shortenedUrl;
+            } else {
+                alert("Error al generar el enlace acortado.");
+                btnText.innerText = "DOWNLOAD — DESCARGA AQUÍ";
+                procesando = false;
             }
-        }, 800);
+        } catch (error) {
+            console.error("Error de red con el acortador", error);
+            alert("Ocurrió un error de conexión con el servidor.");
+            btnText.innerText = "DOWNLOAD — DESCARGA AQUÍ";
+            procesando = false;
+        }
     }
 </script>
 </body>
