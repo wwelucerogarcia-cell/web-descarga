@@ -144,7 +144,7 @@
         👇 AHI ABAJO CONTINUA CON TU DESCARGA 👇
     </div>
 
-    <!-- BOTÓN DE DESCARGA SEGURO SIN ATRIBUTOS CONFLICTIVOS -->
+    <!-- BOTÓN DE DESCARGA SEGURO -->
     <div class="btn-action-wrapper" onclick="procesarDescarga(event)">
         <button class="btn-action" id="mainButton">
             💾 <span id="btnText">DOWNLOAD — DESCARGA AQUÍ</span> 📥
@@ -196,13 +196,11 @@
         "https://graduateamazingly.com/g06y8e39g?key=4212557bce170b873bd7bbee8eec44fd"
     ];
 
-    // Bandera para evitar múltiples clics simultáneos que congelen la página
     let procesando = false;
 
     async function procesarDescarga(e) {
         e.preventDefault();
-
-        if (procesando) return; // Evita doble ejecución
+        if (procesando) return;
 
         if (!urlDestino) {
             alert("Falta el enlace de destino en la barra de direcciones.");
@@ -213,21 +211,24 @@
         const btnText = document.getElementById('btnText');
         btnText.innerText = "⏳ GENERANDO ACCESO...";
 
-        // 1. Abre el pop-under de Adsterra de manera independiente en segundo plano
+        // Lanzamos el anuncio en una pestaña nueva aprovechando el gesto directo del usuario en el botón
         try {
             const linkAleatorio = directLinksAdsterra[Math.floor(Math.random() * directLinksAdsterra.length)];
-            window.open(linkAleatorio, '_blank');
+            const ventanaAnuncio = window.open(linkAleatorio, '_blank');
+            if (ventanaAnuncio) {
+                ventanaAnuncio.blur(); // Intenta enviar el anuncio al fondo (segundo plano relativo)
+                window.focus();        // Devuelve el foco de inmediato a tu sitio web
+            }
         } catch (err) {
-            console.error("Error al abrir anuncio", err);
+            console.error("No se pudo abrir el anuncio secundario", err);
         }
 
-        // 2. Consulta de manera segura la API del acortador sin bloquear la interfaz
+        // Consultamos la API de manera fluida y redirigimos la página actual al acortador
         try {
             const response = await fetch(`/api/shorten?url=${encodeURIComponent(urlDestino)}`);
             const data = await response.json();
             
             if (data.status === "success" && data.shortenedUrl) {
-                // Redirección inmediata y limpia al acortador
                 window.location.href = data.shortenedUrl;
             } else {
                 alert("Error al generar el enlace acortado.");
@@ -235,7 +236,7 @@
                 procesando = false;
             }
         } catch (error) {
-            console.error("Error de red con el acortador", error);
+            console.error("Error de conexión con el acortador", error);
             alert("Ocurrió un error de conexión con el servidor.");
             btnText.innerText = "DOWNLOAD — DESCARGA AQUÍ";
             procesando = false;
